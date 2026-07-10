@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LinguaFlow — Advanced Translator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ░░ ANIMATED BACKGROUND ░░ -->
+  <div class="bg-layer" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="app-wrapper">
+
+    <!-- ══════════════════════════════ HEADER ══════════════════════════════ -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-hex">⬡</div>
+        <div class="logo-info">
+          <span class="logo-text">LinguaFlow</span>
+          <span class="logo-sub">AI-Powered Translator</span>
+        </div>
+      </div>
+
+      <nav class="header-actions">
+        <!-- Word count pill -->
+        <div class="stat-pill" id="wordCountPill" title="Word count">
+          <span id="wordCountDisplay">0</span> words
+        </div>
+
+        <!-- Keyboard shortcut hint -->
+        <div class="stat-pill shortcut-hint">Ctrl+Enter to translate</div>
+
+        <!-- Theme preset -->
+        <select id="themePreset" class="theme-select" title="Choose colour theme">
+          <option value="dark">🌑 Dark</option>
+          <option value="light">☀️ Light</option>
+          <option value="ocean">🌊 Ocean</option>
+          <option value="sunset">🌅 Sunset</option>
+          <option value="forest">🌲 Forest</option>
+          <option value="rose">🌸 Rose</option>
+        </select>
+
+        <!-- Dark/Light toggle -->
+        <button class="theme-toggle" id="themeToggle" title="Toggle dark/light">
+          <span id="themeIcon">☀</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- ══════════════════════════════ MAIN CARD ══════════════════════════════ -->
+    <main class="card" id="mainCard">
+
+      <!-- ── LANGUAGE BAR ──────────────────────────────────────────────────── -->
+      <div class="lang-bar">
+        <div class="lang-select-wrap">
+          <label class="lang-label">Translate From</label>
+          <div class="select-outer">
+            <select id="sourceLang" class="lang-select">
+              <option value="auto">🔍 Auto Detect</option>
+              <option value="en">🇬🇧 English</option>
+              <option value="es">🇪🇸 Spanish</option>
+              <option value="fr">🇫🇷 French</option>
+              <option value="de">🇩🇪 German</option>
+              <option value="it">🇮🇹 Italian</option>
+              <option value="pt">🇵🇹 Portuguese</option>
+              <option value="ru">🇷🇺 Russian</option>
+              <option value="zh">🇨🇳 Chinese</option>
+              <option value="ja">🇯🇵 Japanese</option>
+              <option value="ko">🇰🇷 Korean</option>
+              <option value="ar">🇸🇦 Arabic</option>
+              <option value="hi">🇮🇳 Hindi</option>
+              <option value="bn">🇧🇩 Bengali</option>
+              <option value="nl">🇳🇱 Dutch</option>
+              <option value="pl">🇵🇱 Polish</option>
+              <option value="tr">🇹🇷 Turkish</option>
+              <option value="sv">🇸🇪 Swedish</option>
+              <option value="uk">🇺🇦 Ukrainian</option>
+              <option value="vi">🇻🇳 Vietnamese</option>
+              <option value="th">🇹🇭 Thai</option>
+              <option value="id">🇮🇩 Indonesian</option>
+              <option value="he">🇮🇱 Hebrew</option>
+              <option value="fa">🇮🇷 Persian</option>
+              <option value="cs">🇨🇿 Czech</option>
+              <option value="ro">🇷🇴 Romanian</option>
+              <option value="hu">🇭🇺 Hungarian</option>
+              <option value="da">🇩🇰 Danish</option>
+              <option value="fi">🇫🇮 Finnish</option>
+              <option value="el">🇬🇷 Greek</option>
+              <option value="ms">🇲🇾 Malay</option>
+              <option value="no">🇳🇴 Norwegian</option>
+              <option value="sk">🇸🇰 Slovak</option>
+              <option value="hr">🇭🇷 Croatian</option>
+              <option value="ca">Catalan</option>
+              <option value="lt">🇱🇹 Lithuanian</option>
+              <option value="sl">🇸🇮 Slovenian</option>
+              <option value="ur">🇵🇰 Urdu</option>
+              <option value="ta">🇮🇳 Tamil</option>
+              <option value="te">🇮🇳 Telugu</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="swap-area">
+          <button class="swap-btn" id="swapBtn" title="Swap languages (Alt+S)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 16V4m0 0L3 8m4-4l4 4"/>
+              <path d="M17 8v12m0 0l4-4m-4 4l-4-4"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="lang-select-wrap">
+          <label class="lang-label">Translate To</label>
+          <div class="select-outer">
+            <select id="targetLang" class="lang-select">
+              <option value="hi">🇮🇳 Hindi</option>
+              <option value="en">🇬🇧 English</option>
+              <option value="es">🇪🇸 Spanish</option>
+              <option value="fr">🇫🇷 French</option>
+              <option value="de">🇩🇪 German</option>
+              <option value="it">🇮🇹 Italian</option>
+              <option value="pt">🇵🇹 Portuguese</option>
+              <option value="ru">🇷🇺 Russian</option>
+              <option value="zh">🇨🇳 Chinese</option>
+              <option value="ja">🇯🇵 Japanese</option>
+              <option value="ko">🇰🇷 Korean</option>
+              <option value="ar">🇸🇦 Arabic</option>
+              <option value="bn">🇧🇩 Bengali</option>
+              <option value="nl">🇳🇱 Dutch</option>
+              <option value="pl">🇵🇱 Polish</option>
+              <option value="tr">🇹🇷 Turkish</option>
+              <option value="sv">🇸🇪 Swedish</option>
+              <option value="uk">🇺🇦 Ukrainian</option>
+              <option value="vi">🇻🇳 Vietnamese</option>
+              <option value="th">🇹🇭 Thai</option>
+              <option value="id">🇮🇩 Indonesian</option>
+              <option value="he">🇮🇱 Hebrew</option>
+              <option value="fa">🇮🇷 Persian</option>
+              <option value="cs">🇨🇿 Czech</option>
+              <option value="ro">🇷🇴 Romanian</option>
+              <option value="hu">🇭🇺 Hungarian</option>
+              <option value="da">🇩🇰 Danish</option>
+              <option value="fi">🇫🇮 Finnish</option>
+              <option value="el">🇬🇷 Greek</option>
+              <option value="ms">🇲🇾 Malay</option>
+              <option value="no">🇳🇴 Norwegian</option>
+              <option value="sk">🇸🇰 Slovak</option>
+              <option value="hr">🇭🇷 Croatian</option>
+              <option value="ca">Catalan</option>
+              <option value="lt">🇱🇹 Lithuanian</option>
+              <option value="sl">🇸🇮 Slovenian</option>
+              <option value="ur">🇵🇰 Urdu</option>
+              <option value="ta">🇮🇳 Tamil</option>
+              <option value="te">🇮🇳 Telugu</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── QUICK LANGUAGE CHIPS ──────────────────────────────────────────── -->
+      <div class="quick-chips-bar">
+        <span class="chips-label">Quick:</span>
+        <div class="chips-scroll" id="recentLanguages">
+          <!-- rendered by JS -->
+        </div>
+      </div>
+
+      <!-- ── TOOLBAR ────────────────────────────────────────────────────────── -->
+      <div class="toolbar">
+        <!-- Auto translate -->
+        <label class="toggle-pill" title="Auto-translate as you type (debounced)">
+          <input type="checkbox" id="autoTranslateToggle">
+          <span class="toggle-track">
+            <span class="toggle-thumb"></span>
+          </span>
+          <span>Auto</span>
+        </label>
+
+        <!-- Formality selector (new) -->
+        <label class="toolbar-label">
+          <span class="toolbar-label-text">Tone</span>
+          <select id="formalitySelect" class="mini-select">
+            <option value="default">Default</option>
+            <option value="formal">Formal</option>
+            <option value="informal">Informal</option>
+          </select>
+        </label>
+
+        <!-- Voice input -->
+        <button class="tool-btn" id="micBtn" title="Voice input (hold to speak)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line x1="12" y1="19" x2="12" y2="23"/>
+            <line x1="8" y1="23" x2="16" y2="23"/>
+          </svg>
+          Voice
+        </button>
+
+        <!-- Download TXT -->
+        <button class="tool-btn" id="downloadTxtBtn" title="Download as TXT">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          TXT
+        </button>
+
+        <!-- Download PDF -->
+        <button class="tool-btn" id="downloadPdfBtn" title="Download as PDF">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          PDF
+        </button>
+
+        <!-- Share (new) -->
+        <button class="tool-btn" id="shareBtn" title="Share translation link">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+          </svg>
+          Share
+        </button>
+
+        <!-- Fullscreen (new) -->
+        <button class="tool-btn" id="fullscreenBtn" title="Fullscreen mode">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+            <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+          </svg>
+          Focus
+        </button>
+      </div>
+
+      <!-- ── TEXT PANELS ─────────────────────────────────────────────────── -->
+      <div class="panels-row" id="panelsRow">
+
+        <!-- SOURCE -->
+        <div class="panel source-panel" id="sourcePanel">
+          <div class="panel-header">
+            <span class="panel-lang-name" id="sourceLangName">English</span>
+            <div class="panel-header-actions">
+              <button class="ghost-btn" id="pasteBtn" title="Paste from clipboard">📋 Paste</button>
+              <button class="ghost-btn" id="clearBtn" title="Clear source text">✕ Clear</button>
+            </div>
+          </div>
+
+          <textarea
+            id="sourceText"
+            class="text-area"
+            placeholder="Type, paste, or speak your text…"
+            maxlength="5000"
+            spellcheck="true"
+            aria-label="Source text"
+          ></textarea>
+
+          <div class="panel-footer">
+            <div class="char-info">
+              <span id="charCount">0</span><span class="char-sep">/</span><span>5000</span>
+              <span class="word-count-inner">· <span id="wordCount">0</span> words</span>
+            </div>
+            <button class="icon-btn" id="ttsSourceBtn" title="Listen to source text">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="panel-divider"></div>
+
+        <!-- OUTPUT -->
+        <div class="panel output-panel" id="outputPanel">
+
+          <!-- Spinner overlay -->
+          <div class="spinner-overlay" id="spinnerWrap">
+            <div class="spinner-ring"></div>
+            <p class="spinner-text">Translating…</p>
+          </div>
+
+          <div class="panel-header">
+            <span class="panel-lang-name" id="targetLangName">Hindi</span>
+            <div class="panel-header-actions">
+              <span class="confidence-badge" id="confidenceBadge"></span>
+            </div>
+          </div>
+
+          <div
+            id="translatedText"
+            class="text-area output-text"
+            aria-live="polite"
+            aria-label="Translated text"
+          ><span class="placeholder-text">Translation will appear here…</span></div>
+
+          <div class="panel-footer output-footer">
+            <span class="output-lang-badge" id="outputLangBadge">—</span>
+            <div class="output-actions">
+              <button class="icon-btn" id="copyBtn" title="Copy translation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+              </button>
+              <button class="icon-btn" id="ttsOutputBtn" title="Listen to translation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                </svg>
+              </button>
+              <!-- Star / favourite (new) -->
+              <button class="icon-btn" id="favouriteBtn" title="Save to favourites">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="17" height="17">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ERROR BANNER -->
+      <div class="error-banner" id="errorMsg" role="alert" style="display:none">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <span id="errorText">Something went wrong.</span>
+        <button class="error-close" id="errorClose" aria-label="Close error">✕</button>
+      </div>
+
+      <!-- TRANSLATE BUTTON -->
+      <div class="translate-row">
+        <div class="api-key-notice" id="apiKeyNotice">
+          ⚠️ Set your <code>GOOGLE_API_KEY</code> in <code>script.js</code> to enable translation.
+        </div>
+        <button class="translate-btn" id="translateBtn">
+          <span class="btn-label">Translate</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+        <div class="translate-hint">or Ctrl + Enter</div>
+      </div>
+
+    </main>
+
+    <!-- ══════════════════════════════ TABS SECTION ══════════════════════════════ -->
+    <section class="bottom-section">
+      <div class="section-tabs">
+        <button class="section-tab active" data-tab="history">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          History
+        </button>
+        <button class="section-tab" data-tab="favourites">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Favourites
+        </button>
+        <button class="section-tab" data-tab="stats">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Stats
+        </button>
+        <div class="section-tab-actions" id="sectionTabActions">
+          <button class="clear-btn" id="clearHistoryBtn">🗑 Clear</button>
+        </div>
+      </div>
+
+      <!-- History tab -->
+      <div class="tab-panel active" id="tab-history">
+        <div class="search-bar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" class="search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="historySearch" class="search-input" placeholder="Search history…" />
+        </div>
+        <div class="history-list" id="historyList">
+          <p class="list-empty">No translations yet. Start typing!</p>
+        </div>
+      </div>
+
+      <!-- Favourites tab -->
+      <div class="tab-panel" id="tab-favourites">
+        <div class="history-list" id="favouritesList">
+          <p class="list-empty">No favourites yet. Star a translation to save it here.</p>
+        </div>
+      </div>
+
+      <!-- Stats tab -->
+      <div class="tab-panel" id="tab-stats">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="statTotal">0</div>
+            <div class="stat-label">Total Translations</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statWords">0</div>
+            <div class="stat-label">Words Translated</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statLangs">0</div>
+            <div class="stat-label">Languages Used</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="statTopLang">—</div>
+            <div class="stat-label">Most Used Target</div>
+          </div>
+        </div>
+        <div class="lang-usage-chart" id="langUsageChart"></div>
+      </div>
+    </section>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <footer class="footer">
+      LinguaFlow &copy; 2026 &mdash; Powered by Google Cloud Translation API &mdash; 40+ languages
+    </footer>
+
+  </div><!-- /app-wrapper -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
